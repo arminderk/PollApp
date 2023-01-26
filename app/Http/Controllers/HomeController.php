@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Poll;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,7 +36,8 @@ class HomeController extends Controller
 
     public function admin_home()
     {
-        return view('admin/home');
+        $polls = Poll::all();
+        return view('admin/home', compact('polls'));
     }
 
     public function user_home()
