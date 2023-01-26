@@ -34,6 +34,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * Default attributes for new records.
+     *
+     * @var array<int, string>
+     */
+    protected $attributes = [
+        'role' => 'user'
+    ];
+
+    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
