@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Poll;
 use Illuminate\Http\Request;
 
 class PollController extends Controller
@@ -23,7 +24,8 @@ class PollController extends Controller
      */
     public function create()
     {
-        return view('polls/create');
+        $poll = new Poll();
+        return view('polls/create', compact('poll'));
     }
 
     /**
@@ -34,7 +36,20 @@ class PollController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        $request->validate([
+            'name'        => 'required|max:60',
+            'start_date'  => 'required',
+            'finish_date' => 'required|after:start_date'
+        ]);
+
+        $poll = Poll::create($request->except('options'));
+
+        $requestOptions = $request->input('options');
+        foreach($requestOptions as $requestOption) {
+            $poll->options()->create(['option' => $requestOption]);
+        }
+
+        return redirect()->route('admin.home')->with('success', "Poll and it's options created successfully!");
     }
 
     /**

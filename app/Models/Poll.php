@@ -11,7 +11,14 @@ class Poll extends Model
 
     protected $dates = ['start_date', 'finish_date'];
 
-    public function poll_options()
+    protected $fillable = [
+        'name',
+        'description',
+        'start_date',
+        'finish_date'
+    ];
+
+    public function options()
     {
         return $this->hasMany(PollOption::class);
     }

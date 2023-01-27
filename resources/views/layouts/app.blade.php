@@ -18,12 +18,13 @@
 </head>
 <body>
     <div id="app">
-        <!-- Navbar Component -->
-        <x-navbar />
+        <!-- Navbar Layout -->
+        @include('layouts.navbar')
 
         <main class="py-4">
             <div class="container">
                 <div class="row justify-content-center">
+                    @include('layouts.alerts')
                     @yield('content')
                 </div>
             </div>

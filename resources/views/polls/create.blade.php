@@ -14,23 +14,22 @@
         @csrf
         <div class="col-12">
             <label for="name" class="form-label">Question</label>
-            <input type="text" class="form-control" id="name" name="name">
+            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $poll->name) }}" required>
         </div>
+
         <div class="col-12">
             <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" id="description" name="description"></textarea>
+            <textarea class="form-control" id="description" name="description">{{ old('description', $poll->description) }}</textarea>
         </div>
-        <div class="col-md-4">
-            <label for="days" class="form-label">Days</label>
-            <input type="text" class="form-control" id="days" name="days">
+
+        <div class="col-md-6">
+            <label for="start_date" class="form-label">Start Date</label>
+            <input type="datetime-local" class="form-control" id="start_date" name="start_date" value="{{ old('start_date', $poll->start_date) }}" required>
         </div>
-        <div class="col-md-4">
-            <label for="hours" class="form-label">Hours</label>
-            <input type="text" class="form-control" id="hours" name="hours">
-        </div>
-        <div class="col-md-4">
-            <label for="minutes" class="form-label">Minutes</label>
-            <input type="text" class="form-control" id="minutes" name="minutes">
+
+        <div class="col-md-6">
+            <label for="finish_date" class="form-label">Finish Date</label>
+            <input type="datetime-local" class="form-control" id="finish_date" name="finish_date" value="{{ old('finish_date', $poll->finish_date) }}" required>
         </div>
 
         <hr class="text-secondary mt-4">
@@ -46,7 +45,13 @@
         </div>
 
         <div id="poll-options" class="col-12">
-            <input type="text" class="form-control mb-3" name="pollOptions[]">
+            @if(count(old('options', $poll->options)) > 0)
+                @foreach(old('options', $poll->options) as $option)
+                    <input type="text" class="form-control mb-3" name="options[]" value="{{ $option }}">
+                @endforeach
+            @else
+                <input type="text" class="form-control mb-3" name="options[]">
+            @endif
         </div>
 
         <div class="col-12">
