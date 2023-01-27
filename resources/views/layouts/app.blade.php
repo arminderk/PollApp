@@ -14,7 +14,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/poll.js'])
 </head>
 <body>
     <div id="app">
@@ -22,7 +22,11 @@
         <x-navbar />
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <div class="row justify-content-center">
+                    @yield('content')
+                </div>
+            </div>
         </main>
     </div>
 </body>
