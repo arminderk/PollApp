@@ -18,6 +18,13 @@ class Poll extends Model
         'finish_date'
     ];
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['options'];
+
     public function options()
     {
         return $this->hasMany(PollOption::class);

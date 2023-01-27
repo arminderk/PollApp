@@ -9,7 +9,11 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav me-auto"></ul>
+            <ul class="navbar-nav me-auto">
+                @auth
+                    <a class="dropdown-item" href="{{ route('home') }}">{{ __('Home') }}</a>
+                @endauth
+            </ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">

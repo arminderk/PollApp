@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Poll;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class PollController extends Controller
@@ -39,7 +40,8 @@ class PollController extends Controller
         $request->validate([
             'name'        => 'required|max:60',
             'start_date'  => 'required',
-            'finish_date' => 'required|after:start_date'
+            'finish_date' => 'required|after:start_date',
+            'options.*'   => 'required'
         ]);
 
         $poll = Poll::create($request->except('options'));
@@ -71,7 +73,12 @@ class PollController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $poll = Poll::findOrFail($id);
+            return view('polls/edit', compact('poll'));
+        } catch(ModelNotFoundException $e) {
+            return redirect()->route('admin.home');
+        }
     }
 
     /**
@@ -83,7 +90,26 @@ class PollController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $request->validate([
+                'name'        => 'required|max:60',
+                'start_date'  => 'required',
+                'finish_date' => 'required|after:start_date',
+                'options.*'   => 'required'
+            ]);
+
+            $poll = Poll::findOrFail($id);
+            $poll->update($request->except('options'));
+
+            $requestOptions = $request->input('options');
+            foreach($requestOptions as $optionId => $requestOption) {
+                $poll->options()->updateOrCreate(['id' => $optionId], ['option' => $requestOption]);
+            }
+
+            return redirect()->route('polls.edit', $poll)->with('success', "Poll and it's options updated successfully!");
+        } catch(ModelNotFoundException $e) {
+            return redirect()->route('admin.home');
+        }
     }
 
     /**
