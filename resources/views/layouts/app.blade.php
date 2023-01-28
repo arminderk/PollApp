@@ -13,8 +13,11 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <!-- Alpine JS -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/poll.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div id="app">

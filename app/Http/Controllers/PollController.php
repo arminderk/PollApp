@@ -41,15 +41,12 @@ class PollController extends Controller
             'name'        => 'required|max:60',
             'start_date'  => 'required',
             'finish_date' => 'required|after:start_date',
-            'options.*'   => 'required'
+            'options'     => 'required|array|min:2'
         ]);
 
         $poll = Poll::create($request->except('options'));
 
-        $requestOptions = $request->input('options');
-        foreach($requestOptions as $requestOption) {
-            $poll->options()->create(['option' => $requestOption]);
-        }
+        $poll->options()->createMany($request->options);
 
         return redirect()->route('admin.home')->with('success', "Poll and it's options created successfully!");
     }
@@ -75,6 +72,11 @@ class PollController extends Controller
     {
         try {
             $poll = Poll::findOrFail($id);
+
+            if($poll->published()) {
+                return redirect()->route('admin.home')->withErrors(["Can't edit published poll"]);
+            }
+
             return view('polls/edit', compact('poll'));
         } catch(ModelNotFoundException $e) {
             return redirect()->route('admin.home');
@@ -95,16 +97,14 @@ class PollController extends Controller
                 'name'        => 'required|max:60',
                 'start_date'  => 'required',
                 'finish_date' => 'required|after:start_date',
-                'options.*'   => 'required'
+                'options'     => 'required|array|min:2'
             ]);
 
             $poll = Poll::findOrFail($id);
             $poll->update($request->except('options'));
-
-            $requestOptions = $request->input('options');
-            foreach($requestOptions as $optionId => $requestOption) {
-                $poll->options()->updateOrCreate(['id' => $optionId], ['option' => $requestOption]);
-            }
+            
+            $poll->options()->delete();
+            $poll->options()->createMany($request->options);
 
             return redirect()->route('polls.edit', $poll)->with('success', "Poll and it's options updated successfully!");
         } catch(ModelNotFoundException $e) {
