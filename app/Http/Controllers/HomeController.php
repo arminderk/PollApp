@@ -36,12 +36,12 @@ class HomeController extends Controller
 
     public function admin_home()
     {
-        $polls = Poll::all();
-        return view('admin/home', compact('polls'));
+        $polls = Poll::paginate(10);
+        return view('home/admin/index', compact('polls'));
     }
 
     public function user_home()
     {
-        return view('user/home');
+        return view('home/user/index');
     }
 }

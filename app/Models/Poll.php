@@ -23,15 +23,30 @@ class Poll extends Model
      *
      * @var array
      */
-    protected $with = ['options'];
+    protected $with = ['options', 'responses'];
 
     public function options()
     {
         return $this->hasMany(PollOption::class);
     }
 
+    public function responses()
+    {
+        return $this->hasManyThrough(PollResult::class, PollOption::class);
+    }
+
     public function published()
     {
         return $this->start_date->lte(now()) && $this->finish_date->gte(now());
+    }
+
+    public function getOptionResponsesTotal(PollOption $option)
+    {
+        return count($this->responses) > 0 ? count($option->responses) / count($this->responses) : 0;
+    }
+
+    public function getOptionResponsesPercentage(PollOption $option)
+    {
+        return count($this->responses) > 0 ? (count($option->responses) / count($this->responses)) * 100 : 0;
     }
 }

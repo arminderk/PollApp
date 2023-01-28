@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Poll;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PollController extends Controller
 {
@@ -26,7 +27,7 @@ class PollController extends Controller
     public function create()
     {
         $poll = new Poll();
-        return view('polls/create', compact('poll'));
+        return view('polls/admin/create', compact('poll'));
     }
 
     /**
@@ -54,12 +55,17 @@ class PollController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Poll  $poll
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Poll $poll)
     {
-        //
+        switch(Auth::user()->role) {
+            case 'admin':
+                return view('polls/admin/show', compact('poll'));
+            default:
+                return redirect()->route('user.home');
+        }
     }
 
     /**
@@ -77,7 +83,7 @@ class PollController extends Controller
                 return redirect()->route('admin.home')->withErrors(["Can't edit published poll"]);
             }
 
-            return view('polls/edit', compact('poll'));
+            return view('polls/admin/edit', compact('poll'));
         } catch(ModelNotFoundException $e) {
             return redirect()->route('admin.home');
         }

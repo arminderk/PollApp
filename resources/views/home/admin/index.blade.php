@@ -12,6 +12,10 @@
         <div class="card-body">
             <x-poll-table :polls="$polls" />
         </div>
+
+        <div class="card-footer">
+            {{ $polls->links() }}
+        </div>
     </div>
 </div>
 @endsection
