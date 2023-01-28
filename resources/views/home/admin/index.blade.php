@@ -10,7 +10,7 @@
         <div class="card-header">{{ __('All Polls') }}</div>
 
         <div class="card-body">
-            <x-poll-table :polls="$polls" />
+            @include('home.partials.admin-poll-table')
         </div>
 
         <div class="card-footer">

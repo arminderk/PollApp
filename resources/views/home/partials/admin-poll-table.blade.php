@@ -1,12 +1,12 @@
 <table class="table">
     <thead>
-      <tr>
+    <tr>
         <th scope="col">Name</th>
         <th scope="col">Description</th>
         <th scope="col">Start Date</th>
         <th scope="col">Finish Date</th>
         <th scope="col"></th>
-      </tr>
+    </tr>
     </thead>
     <tbody>
         @foreach($polls as $poll)
