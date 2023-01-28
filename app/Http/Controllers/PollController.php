@@ -79,7 +79,7 @@ class PollController extends Controller
         try {
             $poll = Poll::findOrFail($id);
 
-            if($poll->published()) {
+            if($poll->published) {
                 return redirect()->route('admin.home')->withErrors(["Can't edit published poll"]);
             }
 

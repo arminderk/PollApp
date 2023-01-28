@@ -35,7 +35,7 @@ class Poll extends Model
         return $this->hasManyThrough(PollResult::class, PollOption::class);
     }
 
-    public function published()
+    public function getPublishedAttribute()
     {
         return $this->start_date->lte(now()) && $this->finish_date->gte(now());
     }
