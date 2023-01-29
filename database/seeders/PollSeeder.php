@@ -15,13 +15,13 @@ class PollSeeder extends Seeder
      */
     public function run()
     {
-        // Create 2 test Polls
+        // Create 2 Test Polls
         Poll::factory()->create([
-            'name'  => 'Poll 1'
+            'name'  => 'What is your favorite color?'
         ]);
 
         Poll::factory()->create([
-            'name'  => 'Poll 2'
+            'name'  => 'What is your favorite food out of the ones below?'
         ]);
     }
 }
