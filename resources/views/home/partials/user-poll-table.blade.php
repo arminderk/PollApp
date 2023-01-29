@@ -12,7 +12,7 @@
                 <th scope="row">{{ $poll->name }}</th>
                 <td>{{ $poll->description }}</td>
                 <td>
-                    <a href="{{ route('polls.show', $poll->id) }}">Vote</a>
+                    <a href="{{ route('polls.show', $poll->id) }}">{{ $poll->user_can_vote ? 'Vote' : 'Show' }}</a>
                 </td>
             </tr>
         @endforeach

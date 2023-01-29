@@ -9,7 +9,10 @@ class Poll extends Model
 {
     use HasFactory;
 
-    protected $dates = ['start_date', 'finish_date'];
+    protected $dates = [
+        'start_date',
+        'finish_date'
+    ];
 
     protected $fillable = [
         'name',
@@ -23,7 +26,10 @@ class Poll extends Model
      *
      * @var array
      */
-    protected $with = ['options', 'responses'];
+    protected $with = [
+        'options',
+        'responses'
+    ];
 
     public function options()
     {
@@ -40,12 +46,12 @@ class Poll extends Model
         return $this->start_date->lte(now()) && $this->finish_date->gte(now());
     }
 
-    public function getOptionResponsesTotal(PollOption $option)
+    public function getUserCanVoteAttribute()
     {
-        return count($this->responses) > 0 ? count($option->responses) / count($this->responses) : 0;
+        return is_null($this->responses()->where('user_id', auth()->user()->id)->first());
     }
 
-    public function getOptionResponsesPercentage(PollOption $option)
+    public function optionResponsesPercent(PollOption $option)
     {
         return count($this->responses) > 0 ? (count($option->responses) / count($this->responses)) * 100 : 0;
     }

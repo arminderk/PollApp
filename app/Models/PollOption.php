@@ -9,14 +9,18 @@ class PollOption extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['option'];
+    protected $fillable = [
+        'option'
+    ];
 
     /**
      * The relationships that should always be loaded.
      *
      * @var array
      */
-    protected $with = ['responses'];
+    protected $with = [
+        'responses'
+    ];
 
     public function poll()
     {

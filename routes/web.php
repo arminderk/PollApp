@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function() {
     // User Routes
     Route::prefix('user')->middleware('role:user')->group(function() {
         Route::get('/home', [HomeController::class, 'user_home'])->name('user.home');
+        Route::post('polls/{poll}/vote', [PollController::class, 'vote'])->name('polls.vote');
     });
 
     // Admin/User Shared Routes

@@ -9,6 +9,11 @@ class PollResult extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'poll_option_id',
+        'user_id'
+    ];
+
     public function poll_option()
     {
         return $this->belongsTo(PollOption::class);

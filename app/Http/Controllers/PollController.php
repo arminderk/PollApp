@@ -62,9 +62,13 @@ class PollController extends Controller
     {
         switch(Auth::user()->role) {
             case 'admin':
-                return view('polls/admin/show', compact('poll'));
+                return view('polls/show', compact('poll'));
             default:
-                return redirect()->route('user.home');
+                if($poll->user_can_vote) {
+                    return view('polls/user/vote', compact('poll'));
+                }
+
+                return view('polls/show', compact('poll'));
         }
     }
 
@@ -127,5 +131,29 @@ class PollController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * User can vote for a poll
+     * 
+     * @param Request $reqest
+     * @param Poll $poll
+     * @return \Illuminate\Http\Response
+     */
+    public function vote(Request $request, Poll $poll)
+    {
+        // Verify that user hasn't voted for this poll already
+        $this->authorize('vote', $poll);
+
+        $request->validate([
+            'option_id' => 'required|exists:poll_options,id'
+        ]);
+
+        $poll->responses()->create([
+            'poll_option_id' => $request->option_id,
+            'user_id' => Auth::user()->id
+        ]);
+
+        return back()->with('success', "Thank you! Your vote was registered successfully.");
     }
 }
