@@ -7,7 +7,10 @@
     </div>
 
     <div class="card">
-        <div class="card-header">{{ __('All Polls (Note* Only published polls will be displayed to the user)') }}</div>
+        <div class="card-header">
+            <h5 class="fw-bolder">All Polls (Drag a row in the table to sort it)</h5>
+            <h6 class="fw-lighter text-secondary">Note* Only published polls will be displayed to the user</h6>
+        </div>
 
         <div class="card-body">
             @livewire('admin.polls-table')
