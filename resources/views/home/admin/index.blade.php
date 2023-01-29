@@ -10,7 +10,7 @@
         <div class="card-header">{{ __('All Polls') }}</div>
 
         <div class="card-body">
-            @livewire('admin-polls-table', ['polls' => $polls])
+            @livewire('admin.polls-table')
         </div>
     </div>
 </div>

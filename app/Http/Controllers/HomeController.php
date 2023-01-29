@@ -36,8 +36,7 @@ class HomeController extends Controller
 
     public function admin_home()
     {
-        $polls = Poll::orderBy('position')->get();
-        return view('home/admin/index', compact('polls'));
+        return view('home/admin/index');
     }
 
     public function user_home()
