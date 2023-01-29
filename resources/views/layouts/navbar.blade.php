@@ -1,8 +1,21 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
-        </a>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                @auth
+                    <div class="navbar-brand">
+                        <img src="https://www.cardinalfinancial.com/wp-content/themes/cfstack/assets/images/logo_mark.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                        {{ config('app.name', 'Poll') }}
+                    </div>
+                @else
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="https://www.cardinalfinancial.com/wp-content/themes/cfstack/assets/images/logo_mark.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                        {{ config('app.name', 'Poll') }}
+                    </a>
+                @endauth
+            </div>
+        </nav>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>

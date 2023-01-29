@@ -7,7 +7,7 @@
     </div>
 
     <div class="card">
-        <div class="card-header">{{ __('All Polls') }}</div>
+        <div class="card-header">{{ __('All Polls (Note* Only published polls will be displayed to the user)') }}</div>
 
         <div class="card-body">
             @livewire('admin.polls-table')
