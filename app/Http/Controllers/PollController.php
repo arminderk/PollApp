@@ -45,7 +45,9 @@ class PollController extends Controller
             'options'     => 'required|array|min:2'
         ]);
 
-        $poll = Poll::create($request->except('options'));
+        $position = Poll::all()->max('position') + 1; // Get position of new poll
+        
+        $poll = Poll::create($request->except('options') + ['position' => $position]);
 
         $poll->options()->createMany($request->options);
 

@@ -36,13 +36,13 @@ class HomeController extends Controller
 
     public function admin_home()
     {
-        $polls = Poll::paginate(10);
+        $polls = Poll::orderBy('position')->get();
         return view('home/admin/index', compact('polls'));
     }
 
     public function user_home()
     {
-        $polls = Poll::paginate(10);
+        $polls = Poll::orderBy('position')->paginate(10);
         return view('home/user/index', compact('polls'));
     }
 }

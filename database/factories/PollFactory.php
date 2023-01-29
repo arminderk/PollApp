@@ -18,7 +18,8 @@ class PollFactory extends Factory
     {
         return [
             'description' => fake()->sentence(),
-            'start_date' => now(),
+            'active'      => 1,
+            'start_date'  => now(),
             'finish_date' => now()->addDays(5)
         ];
     }

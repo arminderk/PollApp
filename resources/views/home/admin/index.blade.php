@@ -10,11 +10,7 @@
         <div class="card-header">{{ __('All Polls') }}</div>
 
         <div class="card-body">
-            @include('home.partials.admin-poll-table')
-        </div>
-
-        <div class="card-footer">
-            {{ $polls->links() }}
+            @livewire('admin-polls-table', ['polls' => $polls])
         </div>
     </div>
 </div>

@@ -25,7 +25,7 @@
     options: {{ count($poll->options) ? json_encode($poll->options) : json_encode([['option' => ''], ['option' => '']]) }},
     removeOption(id) {
         if (this.optionsNumber == 2) {
-            alert('each poll must has at least 2 options');
+            alert('Each poll must have at least 2 options');
             return ;
         }
         this.options = this.options.filter(function(option){

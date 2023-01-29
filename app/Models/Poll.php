@@ -18,7 +18,12 @@ class Poll extends Model
         'name',
         'description',
         'start_date',
-        'finish_date'
+        'finish_date',
+        'position'
+    ];
+
+    protected $attributes = [
+        'active' => 0
     ];
 
     /**

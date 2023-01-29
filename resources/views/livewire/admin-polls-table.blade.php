@@ -1,18 +1,20 @@
-<table class="table">
+<table class="table table-hover">
     <thead>
-    <tr>
+    <tr class="">
         <th scope="col">Name</th>
         <th scope="col">Description</th>
+        <th scope="col">Active</th>
         <th scope="col">Start Date</th>
         <th scope="col">Finish Date</th>
         <th scope="col"></th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="table-group-divider" wire:sortable="updatePollOrder">
         @foreach($polls as $poll)
-            <tr @class(['table-success' => !$poll->published])>
+            <tr @class(['table-success' => !$poll->published]) wire:sortable.item="{{ $poll->id }}" wire:key="poll-{{ $poll->id }}">
                 <th scope="row">{{ $poll->name }}</th>
                 <td>{{ $poll->description }}</td>
+                <td>{{ $poll->active ? 'Yes' : 'No' }}</td>
                 <td>{{ date('m/d/Y h:i A', strtotime($poll->start_date)) }}</td>
                 <td>{{ date('m/d/Y h:i A', strtotime($poll->finish_date)) }}</td>
                 <td>
