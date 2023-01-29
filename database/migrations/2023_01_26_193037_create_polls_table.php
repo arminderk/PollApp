@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name', 60);
             $table->text('description')->nullable();
-            $table->boolean('active');
             $table->unsignedInteger('position');
             $table->dateTime('start_date');
             $table->dateTime('finish_date');

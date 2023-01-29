@@ -41,7 +41,7 @@ class HomeController extends Controller
 
     public function user_home()
     {
-        $polls = Poll::orderBy('position')->paginate(10);
+        $polls = Poll::published()->orderBy('position')->paginate(10);
         return view('home/user/index', compact('polls'));
     }
 }

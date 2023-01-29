@@ -22,10 +22,6 @@ class Poll extends Model
         'position'
     ];
 
-    protected $attributes = [
-        'active' => 0
-    ];
-
     /**
      * The relationships that should always be loaded.
      *
@@ -49,6 +45,11 @@ class Poll extends Model
     public function getPublishedAttribute()
     {
         return $this->start_date->lte(now()) && $this->finish_date->gte(now());
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('start_date', '<=', now())->where('finish_date', '>=', now());
     }
 
     public function getUserCanVoteAttribute()

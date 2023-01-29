@@ -20,9 +20,9 @@
 
 <hr class="text-secondary mt-4">
 
-<div id="poll-options" class="col-12" x-data="{ 
-    optionsNumber: {{ count($poll->options) ? $poll->options : 2 }},
-    options: {{ count($poll->options) ? json_encode($poll->options) : json_encode([['option' => ''], ['option' => '']]) }},
+<div id="poll-options" class="col-12" x-data="{
+    optionsNumber: {{ count($poll->options) ? count($poll->options) : 2 }},
+    options: @if(count($poll->options)) {{ json_encode($poll->options) }} @else [{id:Math.random()}, {id:Math.random()}] @endif,
     removeOption(id) {
         if (this.optionsNumber == 2) {
             alert('Each poll must have at least 2 options');
@@ -31,10 +31,11 @@
         this.options = this.options.filter(function(option){
             return option.id != id
         });
-        this.optionsNumber = this.options.length
+        this.optionsNumber = this.options.length;
     },
     addOption(){
         this.options.push({id:Math.random()});
+        this.optionsNumber++;
     }
 }">
     <div class="row mb-5">
