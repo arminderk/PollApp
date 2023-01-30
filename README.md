@@ -56,3 +56,10 @@ npm run dev // Vite (frontend) asset bundle
 - After running the above commands, you will be able to access the application at [localhost:8000](http://localhost:8000).
 - By default, the application supports two user roles: admin and user. The seeders should have created 5 users and 1 admin record in the db (all have a default test password of `password`).
 
+## Optional
+
+Can run simple tests that verify logic related to User and Polls using the command below:
+
+```
+php artisan test
+```
