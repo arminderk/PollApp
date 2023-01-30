@@ -11,7 +11,12 @@ composer install // Laravel
 npm install // Frontend
 ```
 
-### 2. Set up the db
+### 2. Generate Laravel App Key
+```
+php artisan key:generate
+```
+
+### 3. Set up the db
 
 Create the `.env` file (can copy from `.env.example`) and update the credentials:
 
@@ -37,7 +42,7 @@ php artisan db:seed PollSeeder // create polls
 php artisan db:seed PollOptionSeeder // create poll options
 ```
 
-### 3. Run Servers (Need to be running simultaneously):
+### 4. Run Servers (Need to be running simultaneously):
 
 ```
 php artisan serve // Laravel
