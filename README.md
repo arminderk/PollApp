@@ -46,7 +46,7 @@ php artisan db:seed PollOptionSeeder // create poll options
 
 ```
 php artisan serve // Laravel
-npm run dev // Vite (frontend) asset compilation
+npm run dev // Vite (frontend) asset bundle
 ```
 
 &nbsp;
