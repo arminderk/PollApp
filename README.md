@@ -2,6 +2,30 @@
 
 A web application that allows users to take part in various different polls and submit feeback.
 
+## Features
+
+- After the application is setup, you will be able to access the application at [localhost:8000](http://localhost:8000).
+- By default, the application supports two user roles: admin and user. The seeders will create 5 users and 1 admin record in the db (all have a default test password of `password`).
+- Admin Functionality
+    - Admin dashboard displays a paginated table of all polls in the system
+    - The admin can sort the polls displayed on their dashboard in any order they like and the order of published polls will be reflected on the user's dashboard
+    - An admin can create new polls and update existing ones
+    - Once a poll is published (the current date and time is within the start_date and finish_date range), the poll is not editable
+- User Functionality
+    - User dashboard displays a paginated table of published polls
+    - Once a user votes for a poll, the poll results are displayed showing how many users voted for each individual option
+    - A user can only vote once per poll
+    
+## Technologies Used
+
+- PHP/Laravel
+- Bootstrap CSS
+- Alpine JS
+- Laravel Livewire
+- MySQL DB
+
+&nbsp;
+
 ## Application Setup
 
 ### 1. Install dependencies:
@@ -16,7 +40,7 @@ npm install // Frontend
 php artisan key:generate
 ```
 
-### 3. Set up the db
+### 3. Set up the DB
 
 Create the `.env` file (can copy from `.env.example`) and update the credentials:
 
@@ -48,13 +72,6 @@ php artisan db:seed PollOptionSeeder // create poll options
 php artisan serve // Laravel
 npm run dev // Vite (frontend) asset bundle
 ```
-
-&nbsp;
-
-## Features
-
-- After running the above commands, you will be able to access the application at [localhost:8000](http://localhost:8000).
-- By default, the application supports two user roles: admin and user. The seeders should have created 5 users and 1 admin record in the db (all have a default test password of `password`).
 
 ## Optional
 
