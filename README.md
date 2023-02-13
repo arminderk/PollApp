@@ -1,6 +1,6 @@
 # Poll App
 
-A web application that allows users to take part in various different polls and submit feeback.
+A web application that allows users to take part in various different polls and submit feedback.
 
 ## Features
 
