@@ -4,12 +4,12 @@
             <div class="container-fluid">
                 @auth
                     <div class="navbar-brand">
-                        <img src="https://www.cardinalfinancial.com/wp-content/themes/cfstack/assets/images/logo_mark.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                        <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                         {{ config('app.name', 'Poll') }}
                     </div>
                 @else
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="https://www.cardinalfinancial.com/wp-content/themes/cfstack/assets/images/logo_mark.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                        <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                         {{ config('app.name', 'Poll') }}
                     </a>
                 @endauth

@@ -50,7 +50,7 @@ Update the DB credentials:
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=cardinal_poll
+DB_DATABASE=poll_app
 DB_USERNAME=root
 DB_PASSWORD=
 ```
